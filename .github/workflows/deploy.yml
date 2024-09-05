@@ -1,0 +1,32 @@
+name: Deploy to PythonAnywhere
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v2  # Checkout the latest code from GitHub
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'  # Specify the Python version your app uses (e.g., 3.8, 3.9)
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  # Install dependencies listed in requirements.txt
+
+    - name: Deploy to PythonAnywhere
+      env:
+        PA_API_TOKEN: ${{ secrets.PYTHONANYWHERE_API_TOKEN }}  # Use the API token stored in GitHub secrets
+        PA_USERNAME: saadkarim754  # Your PythonAnywhere username
+      run: |
+        pip install pythonanywhere  # Install the PythonAnywhere API client
+        pa_autoconfigure_flask https://github.com/saadkarim754/PSS --domain saadkarim754.pythonanywhere.com
