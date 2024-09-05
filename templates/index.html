@@ -3,28 +3,6 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <div class="jumbotron text-center">
-       
-        <h1>
-            PIEAS SPORTICS SOCIETY
-            {% if session.get("username") %}
-                {% if session.username == "Laraib Shoaib" %}
-                    <p class="text-red">Hello, {{ session.username }}! pookie dookie</p>
-                {% else %}
-                    <p class="text-red">{{ session.username }}</p>
-                {% endif %}
-            {% endif %}
-        </h1>
-        <p>Your hub for sports events and activities at PIEAS.</p>
-
-        {% if session.get("username") %}
-            {% if is_admin and session.get("user_id") in is_admin %}
-                <a href="/create_event" class="custom-secondary">Create Event</a>
-                <a href="/delete_event" class="btn btn-danger">Delete Event</a>
-            {% endif %}
-        {% endif %}
-    </div>
-
     <!-- President's Message Section -->
     <div class="container">
         <div class="row justify-content-center">
