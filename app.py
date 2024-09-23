@@ -7,11 +7,9 @@ from flask import Flask, flash, redirect, render_template, request, session, sen
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
-from helpers import apology, login_required, usd
+from helpers import apology, login_required, USD
 
-
-
-# Configure application
+# Configure application starting line
 app = Flask(__name__)
 # Custom filter
 app.jinja_env.filters["usd"] = usd
